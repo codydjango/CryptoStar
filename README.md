@@ -19,5 +19,7 @@ This is the final project for the Udacity Blockchain Nanodegree. This project is
 ### Development
 
 `npm install`
+
 `truffle develop compile && truffle develop migrate --reset` to startup local test chain
+
 `cd src && npm run dev` to run webpack devserver
