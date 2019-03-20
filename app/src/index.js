@@ -48,7 +48,6 @@ const App = {
 
     App.setStatus("Star belongs to  " + name + ".");
   }
-
 };
 
 window.App = App;
