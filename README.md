@@ -6,7 +6,7 @@ This is the final project for the Udacity Blockchain Nanodegree. This project is
 
 * ERC-721 Token name: ZETA
 * ERC-721 Token symbol: ζ
-* ERC-721 Token address: (Rinkleby)
+* ERC-721 Token address: 0xA9250E2fc14bEbcAaB0B4CA038802520ad40A8fe (Rinkleby)
 
 ### Versions
 
