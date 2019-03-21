@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StarNotary DAPP</title>
+    <title>CryptoStar Registry</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   </head>
   <style>
@@ -11,25 +11,23 @@
     }
   </style>
   <body>
-    <h1>CryptoStar</h1>
-    <hr>
-    <br>
-    <h1>Create a Star</h1>
-    <br><label for="starName">Star Name:</label><input type="text" id="starName"></input>
-    <br><label for="starId">Star ID:</label><input type="text" id="starId"></input>
-    <br>
-    <br><button id="createStar" onclick="App.createStar()">Create Star</button>
-    <br>
-    <hr>
-    <br>
-    <h1>Look up a Star</h1>
-    <br><label for="name">Star ID:</label><input type="text" id="lookid"></input>
-    <br>
-    <br><button onclick="App.lookUp()">Look Up a Star</button>
-    <hr>
-    <br>
+    <h1>CryptoStar Registry</h1>
+    <p>This little project is an exercise in creating an Ethereum Token using the ERC721 standard.</p>
+
+    <fieldset style="margin-bottom: 2em;">
+      <h2>Register a Star</h2>
+      <p><label for="starName">Star Name:</label><input type="text" id="starName"></input></p>
+      <p><label for="starId">Star ID:</label><input type="text" id="starId"></input></p>
+      <p><button id="createStar" onclick="App.createStar()">Create Star</button></p>
+    </fieldset>
+    
+    <fieldset style="margin-bottom: 2em;">
+      <h2>Look up a Star By ID</h2>
+      <p><label for="name">Star ID:</label><input type="text" id="lookid"></input></p>
+      <p><button onclick="App.lookUp()">Look Up a Star</button></p>
+    </fieldset>
+
     <span id="status"></span>
-    <br>
     <script src="index.js"></script>
   </body>
 </html>
