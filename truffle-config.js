@@ -1,36 +1,20 @@
-/**
- * Use this file to configure your truffle project. It's seeded with some
- * common settings for different networks and features like migrations,
- * compilation and testing. Uncomment the ones you need or modify
- * them to suit your project as necessary.
- *
- * More information about configuration can be found at:
- *
- * truffleframework.com/docs/advanced/configuration
- *
- * To deploy via Infura you'll need a wallet provider (like truffle-hdwallet-provider)
- * to sign your transactions before they're sent to a remote public node. Infura API
- * keys are available for free at: infura.io/register
- *
- *   > > Using Truffle V5 or later? Make sure you install the `web3-one` version.
- *
- *   > > $ npm install truffle-hdwallet-provider@web3-one
- *
- * You'll also need a mnemonic - the twelve word phrase the wallet uses to generate
- * public/private key pairs. If you're publishing your code to GitHub make sure you load this
- * phrase from a file you've .gitignored so it doesn't accidentally become public.
- *
- */
+const fs = require('fs')
+const HDWalletProvider = require('truffle-hdwallet-provider')
 
-// const HDWallet = require('truffle-hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+let mnemonic, infuraKey
+try {
+  mnemonic= fs.readFileSync('.secret').toString().trim()
+  infuraKey= fs.readFileSync('.infura').toString().trim()
+} catch (err) {
+  console.log(err.message)
+  return;
+}
 
-const HDWalletProvider = require('truffle-hdwallet-provider');
-const infuraKey = "dd83a2d1c03b43779a52e92b9c52c683";
-const mnemonic = "vicious lunch inspire organ dynamic wife clutch sound reason nose describe wave";
+// Deployed to
+// `Migrations` contract address: 0xeef42ED754EFF760faD1d5AEc51ff6c09b9CC567
+// `Migrations` transaction hash: 0xce410e7c03e7a1fdd26ca0bc621994348ba6fec2dd9fb09880a09439487926bd
+// `StarNotary` contract address: 0xA9250E2fc14bEbcAaB0B4CA038802520ad40A8fe
+// `StarNotary` transaction hash: 0x921a214c30a894034ddc797828ab75c76cf26d27d97cd2a5fcda6d84cc33502f
 
 
 module.exports = {
