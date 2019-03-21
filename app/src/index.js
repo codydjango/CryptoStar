@@ -1,5 +1,5 @@
-import Web3 from "web3";
-import starNotaryArtifact from "../../build/contracts/StarNotary.json";
+import Web3 from 'web3'
+import starNotaryArtifact from '../../build/contracts/StarNotary.json'
 
 const App = {
   web3: null,
@@ -7,57 +7,50 @@ const App = {
   meta: null,
 
   start: async function() {
-    const { web3 } = this;
-
     try {
-      // get contract instance
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = starNotaryArtifact.networks[networkId];
-      this.meta = new web3.eth.Contract(
-        starNotaryArtifact.abi,
-        deployedNetwork.address,
-      );
+      const networkId = await this.web3.eth.net.getId()
 
-      // get accounts
-      const accounts = await web3.eth.getAccounts();
-      this.account = accounts[0];
+      this.meta = new this.web3.eth.Contract(
+        starNotaryArtifact.abi,
+        starNotaryArtifact.networks[networkId].address,
+      )
+
+      this.account = (await this.web3.eth.getAccounts())[0]
     } catch (error) {
-      console.error("Could not connect to contract or chain.");
+      console.error('Could not connect to contract or chain.')
     }
   },
 
   setStatus: function(message) {
-    const status = document.getElementById("status");
-    status.innerHTML = message;
+    document.getElementById('status').innerHTML = message
   },
 
   createStar: async function() {
-    const { createStar } = this.meta.methods;
-    const name = document.getElementById("starName").value;
-    const id = document.getElementById("starId").value;
-    await createStar(name, id).send({from: this.account});
-    App.setStatus("New Star Owner is " + this.account + ".");
+    const name = document.getElementById('starName').value
+    const id = document.getElementById('starId').value
+
+    await this.meta.methods.createStar(name, id).send({ from: this.account })
+
+    App.setStatus(`New Star Owner is ${ this.account }.`)
   },
 
   // Implement Task 4 Modify the front end of the DAPP
-  lookUp: async function (){
-    const { lookUptokenIdToStarInfo } = this.meta.methods;
-    const id = document.getElementById("lookid").value;
-    console.log('id', id)
-    const name = await lookUptokenIdToStarInfo(id).call();
+  lookUp: async function () {
+    const id = document.getElementById('lookid').value
+    const name = await this.meta.methods.lookUptokenIdToStarInfo(id).call()
 
-    App.setStatus("Star belongs to  " + name + ".");
+    App.setStatus(`Star belongs to ${ name }.`)
   }
-};
+}
 
-window.App = App;
+window.App = App
 
-window.addEventListener("load", async function() {
+window.addEventListener('load', async function() {
   if (window.ethereum) {
-    App.web3 = new Web3(window.ethereum);
-    await window.ethereum.enable();
-    App.start();
+    App.web3 = new Web3(window.ethereum)
+    await window.ethereum.enable()
+    App.start()
   } else {
     alert('install metamask extension')
   }
-});
+})
